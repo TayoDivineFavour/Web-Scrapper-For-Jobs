@@ -8,8 +8,16 @@ job_search = job.replace(' ' , '+')
 job_save = job.replace(' ' , '_')
 
 
-url = f'https://www.capitalonecareers.com/search-jobs?l=&k={job_search}&p=1'
-html = requests.get(url).text
+try:
+
+    url = f'https://www.capitalonecareers.com/search-jobs?l=&k={job_search}&p=1'
+    html = requests.get(url).text
+
+except Exception as e:
+
+    print(f'An error occured {e}')
+
+
 
 
 doc = BeautifulSoup(html , 'html.parser')
@@ -28,8 +36,17 @@ Link = []
 
 for page in range(1 , pages + 1):
 
-    url = f'https://www.capitalonecareers.com/search-jobs?l=&k={job_search}&p={page}'
-    html = requests.get(url).text
+    try:
+
+        url = f'https://www.capitalonecareers.com/search-jobs?l=&k={job_search}&p={page}'
+        html = requests.get(url).text
+
+    except Exception as e:
+
+        print(f'An error occured {e}')
+
+
+
     doc = BeautifulSoup(html , 'html.parser')
 
     section = doc.find('section' , id="search-results-list")
@@ -50,6 +67,7 @@ for page in range(1 , pages + 1):
         Date.append(a.find('span' , class_="job-date-posted").text)
         Names.append(a.h2.text)
         Location.append(a.find(class_="job-location").text)
+
 
 
 
