@@ -39,5 +39,5 @@ for page in range(1 , pages + 1):
         location = a.find(class_="job-location").text
 
 
-
+    
 
