@@ -42,8 +42,11 @@ for page in range(1 , pages + 1):
 
         a = li.a
 
+        extracted_link = a['href']
+        added_link = f'https://www.capitalonecareers.com{extracted_link}'
 
-        Link.append(a['href'])
+
+        Link.append(added_link)
         Date.append(a.find('span' , class_="job-date-posted").text)
         Names.append(a.h2.text)
         Location.append(a.find(class_="job-location").text)
